@@ -60,15 +60,15 @@ public class CanIDConstants {
   // Back Right
   public static final int BRD_ID =
       switch (ROBOT) {
-        case COMPBOT, SIMBOT -> 14;
+        case COMPBOT, SIMBOT -> 58;
       };
   public static final int BRR_ID =
       switch (ROBOT) {
-        case COMPBOT, SIMBOT -> 15;
+        case COMPBOT, SIMBOT -> 59;
       };
   public static final int BRR_CANCODER_ID =
       switch (ROBOT) {
-        case COMPBOT, SIMBOT -> 5;
+        case COMPBOT, SIMBOT -> 57;
       };
 
   // Back Left

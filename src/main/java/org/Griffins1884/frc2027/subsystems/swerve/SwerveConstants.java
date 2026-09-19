@@ -103,12 +103,12 @@ public final class SwerveConstants {
 
   // Zeroed rotation values for each module, see setup instructions
   private static final Rotation2d COMPBOT_FLR_ZERO =
-      Rotation2d.fromRadians(-0.482666015625 * (2 * PI));
+      Rotation2d.fromRadians(0.482421875 * (2 * PI));
   private static final Rotation2d COMPBOT_FRR_ZERO =
-      Rotation2d.fromRadians(-0.111328125 * (2 * PI));
-  private static final Rotation2d COMPBOT_BLR_ZERO = Rotation2d.fromRadians(0.00390625 * (2 * PI));
+      Rotation2d.fromRadians(-0.1123046875* (2 * PI));
+  private static final Rotation2d COMPBOT_BLR_ZERO = Rotation2d.fromRadians(-0.277099609375 * (2 * PI));
   private static final Rotation2d COMPBOT_BRR_ZERO =
-      Rotation2d.fromRadians(-0.290283203125 * (2 * PI));
+      Rotation2d.fromRadians(0.431640625 * (2 * PI));
 
   private static final Rotation2d FLR_ZERO =
       switch (ROBOT) {
