@@ -13,6 +13,8 @@ import java.util.Optional;
 import java.util.function.DoubleUnaryOperator;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import org.Griffins1884.frc2027.subsystems.Superstructure;
 import org.Griffins1884.frc2027.subsystems.shooter.ShooterConstants;
 import org.Griffins1884.frc2027.subsystems.turret.TurretSubsystem;
 import org.Griffins1884.frc2027.util.RobotLogging;
@@ -240,9 +242,10 @@ public final class TurretCommands {
   }
 
   public static Command turretOpenLoop(TurretSubsystem turret, double percent) {
-    if (turret == null) {
-      return Commands.none();
-    }
-    return Commands.runEnd(() -> turret.setOpenLoop(percent), turret::stopOpenLoop, turret);
+    if (turret == null) return Commands.none();
+    return Commands.run(
+        () -> turret.setOpenLoop(percent),
+        turret
+    ).finallyDo(() -> turret.stopOpenLoop());
   }
 }

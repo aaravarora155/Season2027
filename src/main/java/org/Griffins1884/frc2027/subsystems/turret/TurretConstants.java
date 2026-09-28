@@ -32,7 +32,7 @@ public final class TurretConstants {
   public static final LoggedTunableNumber ABSOLUTE_SYNC_THRESHOLD_RAD =
       new LoggedTunableNumber("Turret/AbsoluteSyncThresholdRad", 0.1);
 
-  public static final boolean SOFT_LIMITS_ENABLED = true;
+  public static final boolean SOFT_LIMITS_ENABLED = false;
   public static final double SOFT_LIMIT_MIN_RAD = 0;
   public static final double SOFT_LIMIT_MAX_RAD = 2 * PI;
   public static final boolean CONTINUOUS_INPUT = false;

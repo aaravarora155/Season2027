@@ -16,7 +16,7 @@ public class CanIDConstants {
 
   // Shooter
   public static int[] SHOOTER_IDS = {22, 23};
-  public static int[] SHOOTER_PIVOT_IDS = {24};
+  public static int[] SHOOTER_PIVOT_IDS = {9};
 
   // Turret
   public static final int TURRET_ID = 25;

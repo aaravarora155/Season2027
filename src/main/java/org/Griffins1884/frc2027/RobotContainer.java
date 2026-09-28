@@ -32,6 +32,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import java.io.IOException;
@@ -371,6 +373,8 @@ public class RobotContainer {
     configurePathPlannerAutonomous();
     configurePathPlannerTelemetry();
 
+    superstructure.setTurretExternalControl(true);
+
     superstructure.setAutoStartPoseSupplier(
         operatorBoard != null ? operatorBoard::getQueuedStartPose : Optional::empty);
   }
@@ -397,10 +401,9 @@ public class RobotContainer {
               DriveCommands.joystickDriveRobotRelativeFlippedCommand(
                   drive, driver.getYAxis(), driver.getXAxis(), driver.getRotAxis()));
 
-      driver
-          .shootToggle()
-          .whileTrue(superstructure.runIndexer(true))
-          .whileFalse(superstructure.runIndexer(false));
+      driver.shootToggle()
+      .onTrue(superstructure.runIndexer(true))
+      .onFalse(superstructure.runIndexer(false));
 
       driver
           .intakeDeployToggle()
@@ -413,23 +416,19 @@ public class RobotContainer {
 
       driver
           .shooterPivotUp()
-          .whileTrue(ShooterCommands.pivotOpenLoop(shooterPivot, 0.1))
-          .whileFalse(ShooterCommands.pivotOpenLoop(shooterPivot, 0));
+          .whileTrue(ShooterCommands.pivotOpenLoop(shooterPivot, 0.1));
 
       driver
-          .shooterPivotUp()
-          .whileTrue(ShooterCommands.pivotOpenLoop(shooterPivot, -0.1))
-          .whileFalse(ShooterCommands.pivotOpenLoop(shooterPivot, 0));
+          .shooterPivotDown()
+          .whileTrue(ShooterCommands.pivotOpenLoop(shooterPivot, -0.1));
 
       driver
           .turretLeft()
-          .whileTrue(TurretCommands.turretOpenLoop(turret, 0.1))
-          .whileFalse(TurretCommands.turretOpenLoop(turret, 0));
+          .whileTrue(TurretCommands.turretOpenLoop(turret, 0.5));
 
       driver
           .turretRight()
-          .whileTrue(TurretCommands.turretOpenLoop(turret, -0.1))
-          .whileFalse(TurretCommands.turretOpenLoop(turret, 0));
+          .whileTrue(TurretCommands.turretOpenLoop(turret, -0.5));
 
       Command resetOdometryCmd =
           Commands.runOnce(

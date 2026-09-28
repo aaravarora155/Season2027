@@ -623,16 +623,14 @@ public class Superstructure extends SubsystemBase {
       Logger.recordOutput("Superstructure/ManualPivotAxis", pivotAxis);
     }
   }
-
   private void stopManualJog() {
-    if (turret != null) {
+    if (turret != null && !turretExternalControl) {
       turret.stopOpenLoop();
     }
     if (arms.shooterPivot != null) {
       arms.shooterPivot.stopOpenLoop();
     }
   }
-
   private void requestStateInternal(SuperState state, boolean override) {
     requestedState = state;
     if (override) {

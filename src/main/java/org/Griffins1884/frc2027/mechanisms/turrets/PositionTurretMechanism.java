@@ -194,8 +194,9 @@ public class PositionTurretMechanism extends SubsystemBase {
   }
 
   public void stopOpenLoop() {
-    openLoopPercent = 0.0;
-    controlMode = ControlMode.CLOSED_LOOP;
+      openLoopPercent = 0.0;
+      goalRad = getPositionRad(); // hold wherever we stopped
+      controlMode = ControlMode.CLOSED_LOOP;
   }
 
   public boolean isAtGoal() {
